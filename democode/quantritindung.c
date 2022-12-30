@@ -326,3 +326,164 @@ void Chuyen(int n, cus_t *p_cus)
 		printf(" \n  ==> nhập sai , vui lòng nhập lại !");
 	}
 }
+void SuaDiaChi(int n, cus_t *p_cus)
+{
+	char newAddress[20];
+	int id;
+	printf("Nhap ID khach hang can sua dia chi: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	getchar();
+	if(TimID(id, n, p_cus) == 1)
+	{
+		for(int i = 0; i < n; i++)
+		{
+			if((p_cus + i)->id == id)
+			{
+				printf("Nhap dia chi moi: ");
+				fflush(stdout);
+				fgets(newAddress, sizeof(newAddress), stdin);
+				strcpy((p_cus + i)->address, newAddress);
+				break;
+			}
+		}
+	}
+	else
+	{
+		printf("\nKhong tim thay khach hang can sua dia chi!!");
+	}
+}
+
+void SuaTen(int n, cus_t *p_cus)
+{
+	char newName[20];
+	int id;
+	printf("Nhap ID khach hang can sua ten: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	getchar();
+	if(TimID(id, n, p_cus) == 1)
+	{
+		for(int i = 0; i < n; i++)
+		{
+			if((p_cus + i)->id == id)
+			{
+				printf("Nhap ten moi: ");
+				fflush(stdout);
+				fgets(newName, sizeof(newName), stdin);
+				strcpy((p_cus + i)->name, newName);
+				break;
+			}
+		}
+	}
+	else
+	{
+		printf("\nKhong tim thay khach hang can sua ten!!");
+	}
+}
+
+void SuaID(int n, cus_t *p_cus)
+{
+	int newID;
+	int id;
+	printf("Nhap lai ID khach hang can sua ID: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	if(TimID(id, n, p_cus) == 1)
+	{
+		for(int i = 0; i < n; i++)
+		{
+			if((p_cus + i)->id == id)
+			{
+				printf("Nhap ID moi: ");
+				fflush(stdout);
+				scanf("%d", &newID);
+				(p_cus + i)->id = newID;
+				break;
+			}
+		}
+	}
+	else
+	{
+		printf("\nKhong tim thay khach hang can sua ID!!");
+	}
+}
+
+void SuaPass(int n, cus_t *p_cus)
+{
+	int newPass;
+	int id;
+	printf("Nhap ID khach hang can sua pass: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	if(TimID(id, n, p_cus) == 1)
+	{
+		for(int i = 0; i < n; i++)
+		{
+			if((p_cus + i)->id == id)
+			{
+				printf("Nhap pass moi: ");
+				fflush(stdout);
+				scanf("%d", &newPass);
+				(p_cus + i)->pass = newPass;
+				break;
+			}
+		}
+	}
+	else
+	{
+		printf("\nKhong tim thay khach hang can sua pass!!");
+	}
+}
+
+void SuaSoDu(int n, cus_t *p_cus)
+{
+	int newSodu;
+	int id;
+	printf("Nhap ID khach hang can sua so du tai khoan: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	if(TimID(id, n, p_cus) == 1)
+	{
+		for(int i = 0; i < n; i++)
+		{
+			if((p_cus + i)->id == id)
+			{
+				printf("Nhap so du tai khoan moi: ");
+				fflush(stdout);
+				scanf("%d", &newSodu);
+				(p_cus + i)->money = newSodu;
+				break;
+			}
+		}
+	}
+	else
+	{
+		printf("\nKhong tim thay khach hang can sua so du tai khoan!!");
+	}
+}
+
+void Save(int n, cus_t *p_cus)
+{
+	char NgayLuu[20];
+	char GioLuu[20];
+	FILE *fptr;
+
+	fptr = fopen("Thong_tin_khach hang.txt", "a+");
+	getchar();
+	printf("Nhap ngay luu du lieu: ");
+	fflush(stdout);
+	gets(NgayLuu);
+	printf("Nhap gio luu du lieu: ");
+	fflush(stdout);
+	gets(GioLuu);
+	fprintf(fptr,"\n");
+	fprintf(fptr, "Ngay luu: %s, gio luu: %s", NgayLuu, GioLuu);
+	fprintf(fptr, "\nSTT\t\tName\t\t\tAddress\t\t\tID\t\t\tMoney\n");
+	for(int i = 0; i < n; i++)
+	{
+		fprintf(fptr, "%d\t\t%s\t\t%s\t\t%d\t\t%.2f\n", i + 1, (p_cus + i)->name, (p_cus + i)->address, (p_cus + i)->id, (p_cus + i)->money);
+	}
+	fflush(fptr);
+	fclose(fptr);
+}
