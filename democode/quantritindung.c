@@ -42,31 +42,31 @@ int main()
 
 	do
 	{
-		printf("Nháº­p sá»‘ lÆ°á»£ng khÃ¡ch hÃ ng : ");
+		printf("Nhập số lượng khách hàng : ");
 		fflush(stdout);
 		scanf("%d", &n);
 	} while (n < 1);
 	Nhap(n, &p_head);
 	if (p_head == NULL)
 	{
-		printf("CÃ³ lá»—i ! khÃ´ng thá»ƒ cáº­p phÃ¡t bá»™ nhá»›.");
+		printf("Có lỗi ! không thể cập phát bộ nhớ.");
 		exit(0);
 	}
 	while (choose != 6)
 	{
-		printf("\nNháº­p 1: Hiá»‡n thá»‹ danh sÃ¡ch khÃ¡ch hÃ ng");
+		printf("\nNhập 1: Hiện thị danh sách khách hàng");
 		fflush(stdout);
-		printf("\nNháº­p 2: RÃºt tiá»n tá»« tÃ i khoáº£n");
+		printf("\nNhập 2: Rút tiền từ tài khoản");
 		fflush(stdout);
-		printf("\nNháº­p 3: Chuyá»ƒn tiá»n");
+		printf("\nNhập 3: Chuyển tiền");
 		fflush(stdout);
-		printf("\nNháº­p 4: Sá»­a thÃ´ng tin khÃ¡ch hÃ ng");
+		printf("\nNhập 4: Sửa thông tin khách hàng");
 		fflush(stdout);
-		printf("\nNháº­p 5: LÆ°u dá»¯ liá»‡u khÃ¡ch hÃ ng");
+		printf("\nNhập 5: Lưu dữ liệu khách hàng");
 		fflush(stdout);
-		printf("\nNháº­p 6: ThoÃ¡t");
+		printf("\nNhập 6: Thoát");
 		fflush(stdout);
-		printf("\nMá»i báº¡n nháº­p : ");
+		printf("\nMời bạn nhập : ");
 		fflush(stdout);
 		scanf("%d", &choose);
 		switch (choose)
@@ -83,19 +83,19 @@ int main()
 		case 4:
 			while (key != 6)
 			{
-				printf("\nNháº­p 1: Sá»­a tÃªn");
+				printf("\nNhập 1: Sửa tên");
 				fflush(stdout);
-				printf("\nNháº­p 2: Sá»­a Ä‘á»‹a chá»‰");
+				printf("\nNhập 2: Sửa địa chỉ");
 				fflush(stdout);
-				printf("\nNháº­p 3: Sá»­a ID");
+				printf("\nNhập 3: Sửa ID");
 				fflush(stdout);
-				printf("\nNháº­p 4: Sá»­a pass");
+				printf("\nNhập 4: Sửa pass");
 				fflush(stdout);
-				printf("\nNháº­p 5: Sá»­a sá»‘ dÆ° tÃ i khoáº£n");
+				printf("\nNhập 5: Sửa số dư tài khoản");
 				fflush(stdout);
-				printf("\nNháº­p 6: ThoÃ¡t");
+				printf("\nNhập 6: Thoát");
 				fflush(stdout);
-				printf("\nMá»i báº¡n chá»n : ");
+				printf("\nMời bạn chọn : ");
 				fflush(stdout);
 				scanf("%d", &key);
 				switch (key)
@@ -116,10 +116,10 @@ int main()
 					SuaSoDu(n, p_head);
 					break;
 				case 6:
-					printf("ÄÃ£ thoÃ¡t!");
+					printf("Đã thoát!");
 					break;
 				default:
-					printf("\nNháº­p láº¡i");
+					printf("\nNhập lại");
 					break;
 				}
 			}
@@ -128,10 +128,10 @@ int main()
 			Save(n, p_head);
 			break;
 		case 6:
-			printf(" Háº¹n gáº·p láº¡i quÃ½ khÃ¡ch !");
+			printf(" Hẹn gặp lại quý khách !");
 			break;
 		default:
-			printf("\nNháº­p láº¡i");
+			printf("\nNhập lại");
 			break;
 		}
 	}
