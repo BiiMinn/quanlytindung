@@ -326,3 +326,176 @@ void Chuyen(int n, cus_t *p_cus)
 	}
 }
 
+void SuaTen(int n, cus_t *p_cus)
+{
+	cus_t *temp = p_cus;
+	char newName[20];
+	int id;
+	printf("Nhập ID khách hàng cần sửa tên: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	getchar();
+	if (TimID(id, n, p_cus) == 1)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (temp->id == id)
+			{
+				printf("Nhập tên mới: ");
+				fflush(stdout);
+				fgets(newName, sizeof(newName), stdin);
+				strcpy(temp->name, newName);
+				break;
+			}
+			temp = temp->next_customer;
+		}
+	}
+	else
+	{
+		printf("\nKhong tim thay khach hang can sua ten!!");
+	}
+}
+
+void SuaDiaChi(int n, cus_t *p_cus)
+{
+	cus_t *temp = p_cus;
+	char newAddress[20];
+	int id;
+	printf("Nhập ID khách hàng cần sửa địa chỉ: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	getchar();
+	if (TimID(id, n, p_cus) == 1)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (temp->id == id)
+			{
+				printf("Nhập địa chỉ mới: ");
+				fflush(stdout);
+				fgets(newAddress, sizeof(newAddress), stdin);
+				strcpy(temp->address, newAddress);
+				break;
+			}
+			temp = temp->next_customer;
+		}
+	}
+	else
+	{
+		printf("\nKhông tìm thấy khách hàng cần sửa địa chỉ!!");
+	}
+}
+
+void SuaID(int n, cus_t *p_cus)
+{
+	cus_t *temp = p_cus;
+	int newID;
+	int id;
+	printf("Nhập lại ID khách hàng cần sửa ID: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	if (TimID(id, n, p_cus) == 1)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (temp->id == id)
+			{
+				printf("Nhập ID mới: ");
+				fflush(stdout);
+				scanf("%d", &newID);
+				temp->id = newID;
+				break;
+			}
+			temp = temp->next_customer;
+		}
+	}
+	else
+	{
+		printf("\nKhông tìm thấy khách hàng cần sửa ID!!");
+	}
+}
+
+void SuaPass(int n, cus_t *p_cus)
+{
+	cus_t *temp = p_cus;
+	int newPass;
+	int id;
+	printf("Nhập ID khách hàng cần sửa pass: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	if (TimID(id, n, p_cus) == 1)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (temp->id == id)
+			{
+				printf("Nhập pass mới: ");
+				fflush(stdout);
+				scanf("%d", &newPass);
+				temp->pass = newPass;
+				break;
+			}
+			temp = temp->next_customer;
+		}
+	}
+	else
+	{
+		printf("\nKhông tìm thấy thông tin khách hang cần sửa pass!!");
+	}
+}
+
+void SuaSoDu(int n, cus_t *p_cus)
+{
+	cus_t *temp = p_cus;
+	int newSodu;
+	int id;
+	printf("Nhập ID khách hàng cần sửa số dư tài khoản: ");
+	fflush(stdout);
+	scanf("%d", &id);
+	if (TimID(id, n, p_cus) == 1)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (temp->id == id)
+			{
+				printf("Nhập số dư tài khoản mới: ");
+				fflush(stdout);
+				scanf("%d", &newSodu);
+				temp->money = newSodu;
+				break;
+			}
+			temp = temp->next_customer;
+		}
+	}
+	else
+	{
+		printf("\nKhông tìm thông tin thấy khách hàng cần sửa số dư tài khoản!!");
+	}
+}
+
+void Save(int n, cus_t *p_cus)
+{
+	cus_t *temp = p_cus;
+	char NgayLuu[20];
+	char GioLuu[20];
+	FILE *fptr;
+
+	fptr = fopen("Thong_tin_khach hang.txt", "a+");
+	getchar();
+	printf("Nhập ngày lưu dữ liệu: ");
+	fflush(stdout);
+	gets(NgayLuu);
+	printf("Nhập giờ lưu dữ liệu: ");
+	fflush(stdout);
+	gets(GioLuu);
+	fprintf(fptr, "\n");
+	fprintf(fptr, "Ngay luu: %s, gio luu: %s", NgayLuu, GioLuu);
+	fprintf(fptr, "\nSTT\t\tName\t\t\tAddress\t\t\tID\t\t\tMoney\n");
+	for (int i = 0; i < n; i++)
+	{
+		fprintf(fptr, "%d\t\t%s\t\t%s\t\t%d\t\t%.2f\n", i + 1, temp->name, temp->address, temp->id, temp->money);
+		temp = temp->next_customer;
+	}
+	fflush(fptr);
+	fclose(fptr);
+}
