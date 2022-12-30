@@ -5,8 +5,8 @@
 
 typedef struct customer
 	{
-		char name[30];
-		char address[50];
+		char name[50];
+		char address[80];
 		int id;
 		int pass;
 		float money;
